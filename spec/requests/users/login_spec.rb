@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Users::Logins', type: :request do
-  describe 'GET /users/logins' do
+RSpec.describe 'Users::Login', type: :request do
+  describe 'POST /users/login' do
     it 'works! (now write some real specs)' do
-      get users_logins_path
+      post users_login_path
       expect(response).to have_http_status(:ok)
     end
   end
