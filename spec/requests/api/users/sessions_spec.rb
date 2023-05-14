@@ -2,10 +2,10 @@
 
 require 'rails_helper'
 
-RSpec.describe 'Users::Login', type: :request do
-  describe 'POST /users/login' do
+RSpec.describe 'Users::Sessions', type: :request do
+  describe 'POST api/users/login' do
     it 'works! (now write some real specs)' do
-      post users_login_path
+      post api_users_login_path
       expect(response).to have_http_status(:ok)
     end
   end
