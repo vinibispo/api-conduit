@@ -1,7 +1,12 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
-
+%w[
+  active_record/railtie
+  action_controller/railtie
+  active_job/railtie
+].each do |railtie|
+  require railtie
+end
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
@@ -23,5 +28,6 @@ module ApiConduit
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.generators.test_framework = :rspec
   end
 end
