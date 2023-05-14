@@ -67,6 +67,7 @@ GEM
       minitest (>= 5.1)
       tzinfo (~> 2.0)
     ast (2.4.2)
+    bcrypt (3.1.18)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -86,6 +87,7 @@ GEM
     irb (1.6.4)
       reline (>= 0.3.0)
     json (2.6.3)
+    kind (5.10.0)
     loofah (2.21.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -199,6 +201,11 @@ GEM
     timeout (0.3.2)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
+    u-attributes (2.8.0)
+      kind (>= 4.0, < 6.0)
+    u-case (4.5.2)
+      kind (>= 5.6, < 6.0)
+      u-attributes (>= 2.7, < 3.0)
     unicode-display_width (2.4.2)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
@@ -209,6 +216,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  bcrypt (~> 3.1.7)
   bootsnap
   debug
   puma (~> 5.0)
@@ -218,6 +226,7 @@ DEPENDENCIES
   rubocop-rspec
   sqlite3 (~> 1.4)
   tzinfo-data
+  u-case
 
 RUBY VERSION
    ruby 3.2.0p0
