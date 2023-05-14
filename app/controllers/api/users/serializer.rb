@@ -3,8 +3,9 @@
 module Api
   module Users
     class Serializer
-      def initialize(user:)
+      def initialize(user:, token:)
         self.user = user
+        self.token = token
       end
 
       def as_json
@@ -12,6 +13,7 @@ module Api
           user: {
             email: user.email,
             username: user.username,
+            token:,
             id: user.id,
             bio: user.bio,
             image: user.image
@@ -21,7 +23,7 @@ module Api
 
       private
 
-      attr_accessor :user
+      attr_accessor :user, :token
     end
   end
 end

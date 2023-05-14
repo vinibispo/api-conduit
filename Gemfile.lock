@@ -87,6 +87,7 @@ GEM
     irb (1.6.4)
       reline (>= 0.3.0)
     json (2.6.3)
+    jwt (2.7.0)
     kind (5.10.0)
     loofah (2.21.2)
       crass (~> 1.0.2)
@@ -219,6 +220,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap
   debug
+  jwt
   puma (~> 5.0)
   rails (~> 7.0.4, >= 7.0.4.3)
   rspec-rails (~> 6.0.0)

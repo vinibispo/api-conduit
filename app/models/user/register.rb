@@ -10,7 +10,8 @@ module User
       user = Record.new(username:, email:, password:)
 
       if user.save
-        Success result: { user: }
+        token = ApiToken.generate(user:)
+        Success result: { user:, token: }
       else
         Failure :invalid_attributes, result: { errors: user.errors }
       end

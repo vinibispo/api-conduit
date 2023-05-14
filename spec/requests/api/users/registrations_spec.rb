@@ -30,14 +30,12 @@ RSpec.describe 'Api::Users::Registrations' do
       it 'returns the created user' do
         post api_users_register_path, params: valid_params
 
-        expect(response.parsed_body).to eq(
-          'user' => {
-            'email' => 'john@doe.com',
-            'username' => 'johndoe',
-            'id' => User::Record.last.id,
-            'bio' => nil,
-            'image' => nil
-          }
+        expect(response.parsed_body['user']).to include(
+          'email' => 'john@doe.com',
+          'username' => 'johndoe',
+          'id' => User::Record.last.id,
+          'bio' => nil,
+          'image' => nil
         )
       end
     end

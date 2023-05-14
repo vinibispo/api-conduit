@@ -29,7 +29,22 @@ RSpec.describe 'Users::Sessions' do
 
       post api_users_login_path, params: { user: { email:, password: } }
 
-      expect(response.parsed_body).to eq({ 'errors' => { 'email or password' => ['is invalid'] } })
+      expect(response.parsed_body).to eq({ 'errors' => [{ 'email or password' => ['is invalid'] }] })
+    end
+  end
+
+  describe 'GET api/user' do
+    it 'returns the user when the token is valid' do
+      email = 'john@doe.com'
+      password = '123456'
+      username = 'johndoe'
+
+      user = User::Record.create(email:, password:, username:)
+      token = User::ApiToken.generate(user:)
+
+      get api_user_path, headers: { Authorization: "Token #{token}" }
+
+      expect(response).to have_http_status(:ok)
     end
   end
 end

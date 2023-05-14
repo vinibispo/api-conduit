@@ -5,7 +5,7 @@ module Api
     class RegistrationsController < ApplicationController
       def create
         User::Register.call(user_params.to_h)
-                      .on_success { |result| render json: user_serializer(result[:user]), status: :created }
+                      .on_success { |result| render_json_user_created([result[:user], result[:token]]) }
                       .on_failure(:invalid_attributes) do |error|
           render json: error,
                  status: :unprocessable_entity
@@ -18,8 +18,9 @@ module Api
         params.require(:user).permit(:username, :email, :password)
       end
 
-      def user_serializer(user)
-        Serializer.new(user:).as_json
+      def render_json_user_created(user_and_token, status: :created)
+        user, token = user_and_token
+        render json: Serializer.new(user:, token:).as_json, status:
       end
     end
   end
