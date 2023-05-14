@@ -1,16 +1,22 @@
+# frozen_string_literal: true
+
 module Api
-  class Users::SessionsController < ApplicationController
+  module Users
+    class SessionsController < ApplicationController
+      def create
+        ::User::SignIn.call(user_params.to_h)
+                      .on_success { |result| render json: { user: result[:user] }, status: :ok }
+                      .on_failure(:invalid_credentials) do |result|
+          render json: { errors: result[:message] },
+                 status: :forbidden
+        end
+      end
 
-    def create
-      ::User::SignIn.call(user_params.to_h)
-        .on_success { |result| render json: {user: result[:user]}, status: :ok }
-        .on_failure(:invalid_credentials) { |result| render json: result[:message], status: :unauthorized }
-       .on_failure { |result| render json: result[:errors], status: :unprocessable_entity }
-    end
+      private
 
-    private
-    def user_params
-      params.require(:user).permit(:email, :password)
+      def user_params
+        params.require(:user).permit(:email, :password)
+      end
     end
   end
 end
