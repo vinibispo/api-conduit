@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_14_145305) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_14_202700) do
+  create_table "articles", force: :cascade do |t|
+    t.integer "author_id", null: false
+    t.string "slug", null: false
+    t.string "title"
+    t.string "description"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_articles_on_author_id"
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "username"
@@ -23,4 +35,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_14_145305) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "articles", "users", column: "author_id"
 end

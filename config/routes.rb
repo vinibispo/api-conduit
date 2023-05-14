@@ -12,5 +12,7 @@ Rails.application.routes.draw do
       post 'login', to: 'sessions#create', as: 'login'
       post '/', to: 'registrations#create', as: 'register'
     end
+
+    resources :articles, only: %i[index]
   end
 end
