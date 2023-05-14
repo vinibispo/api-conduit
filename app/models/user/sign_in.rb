@@ -7,9 +7,12 @@ module User
     validates :email, :password, presence: true
 
     def call!
-      user = User::Record.find_by(email:)
+      user = Record.find_by(email:)
 
-      return Success result: { user: } if user&.authenticate(password)
+      if user&.authenticate(password)
+        token = ApiToken.generate(user:)
+        return Success result: { user:, token: }
+      end
 
       Failure :invalid_credentials, result: { message: [{ 'email or password': ['is invalid'] }] }
     end

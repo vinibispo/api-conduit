@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   namespace :api do
     get '/user', to: 'users/sessions#show', as: 'user'
+    put '/user', to: 'users/sessions#update', as: 'update_user'
     namespace :users do
       post 'login', to: 'sessions#create', as: 'login'
       post '/', to: 'registrations#create', as: 'register'
