@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :users do
       post 'login', to: 'sessions#create', as: 'login'
+      post '/', to: 'registrations#create', as: 'register'
     end
   end
 end
