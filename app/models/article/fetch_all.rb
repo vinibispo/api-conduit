@@ -1,8 +1,12 @@
-class Article::FetchAll < Micro::Case
-  attribute :params
+# frozen_string_literal: true
 
-  def call!
-    articles = Article::Record.all
-    Success result: { articles: }
+module Article
+  class FetchAll < Micro::Case
+    attribute :params
+
+    def call!
+      articles = Record.includes(:author).all
+      Success result: { articles: }
+    end
   end
 end
