@@ -12,7 +12,7 @@ gem 'rails', '~> 7.0.4', '>= 7.0.4.3'
 gem 'sqlite3', '~> 1.4'
 
 # Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.6'
 
 # Use Micro::Case to organize your business logic [https://github.com/serradura/u-case]
 gem 'u-case'
